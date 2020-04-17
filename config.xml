@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<config>
+    <CutLimit>30</CutLimit>
+    <CutDmg>5.0</CutDmg>
+    <PierceDmg>2.0</PierceDmg>
+    <BluntDmg>2.0</BluntDmg>
+    <CutArmor>1.0</CutArmor>
+    <PierceArmor>0.5</PierceArmor>
+    <MissileFactor>0.3</MissileFactor>
+</config>
