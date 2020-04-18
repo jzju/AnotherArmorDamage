@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
@@ -71,22 +71,26 @@ namespace AnotherArmorDamage
                         bleedDmg = Math.Max(0f, magnitude - Vars.dict["CutArmor"] * armorEffectiveness);
                         bleedDmg *= Vars.dict["CutDmg"];
                     }
+                    bluntDmg *= Vars.dict["CutBluntDmg"];
                     break;
                 case DamageTypes.Pierce:
                     bleedDmg = Math.Max(0f, magnitude - Vars.dict["PierceArmor"] * armorEffectiveness);
                     bleedDmg *= Vars.dict["PierceDmg"];
+                    bluntDmg *= Vars.dict["PierceBluntDmg"];
                     break;
                 case DamageTypes.Blunt:
-                    bluntDmg *= Vars.dict["BluntDmg"];
+                    bluntDmg *= Vars.dict["BluntBluntDmg"];
                     break;
             }
-            //if (magnitude > 0)
-            //    InformationManager.DisplayMessage(new InformationMessage("magnitude " + magnitude + " bluntDmg " + bluntDmg + " bleedDmg " + bleedDmg + " armorEffectiveness " + armorEffectiveness));
+            if (Vars.dict["ShowCalc"] > 0 && magnitude > 5 && armorEffectiveness > 0)
+            {
+                InformationManager.DisplayMessage(new InformationMessage("magnitude " + magnitude + " bluntDmg " + bluntDmg + " bleedDmg " + bleedDmg + " armorEffectiveness " + armorEffectiveness));
+                //System.Diagnostics.Debug.WriteLine("type " + damageType + " magnitude " + magnitude + " bluntDmg " + bluntDmg + " bleedDmg " + bleedDmg + " armorEffectiveness " + armorEffectiveness);
+            }
             __result = bluntDmg + bleedDmg;
             return false;
         }
     }
-
 
     class Main : MBSubModuleBase
     {
@@ -96,9 +100,11 @@ namespace AnotherArmorDamage
             xmlDocument.Load(BasePath.Name + "Modules/AnotherArmorDamage/config.xml");
             foreach (XmlNode childNode in xmlDocument.SelectSingleNode("/config").ChildNodes)
             {
-                Vars.dict.Add(childNode.Name, float.Parse(childNode.InnerText));
+                if (childNode.NodeType == XmlNodeType.Element)
+                    Vars.dict.Add(childNode.Name, float.Parse(childNode.InnerText));
             }
             MyPatcher.DoPatching();
         }
     }
 }
+
