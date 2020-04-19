@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <config>
+
+    <!-- damage = bluntDmg + bleedDmg
+    bluntDmg = magnitude * 100f / (100f + armorEffectiveness) * xBluntDmg
+    bleedDmg = (magnitude - (xArmor * armorValue)) * xDmg -->
+
+    <!-- No cut damage if armor over this value -->
     <CutLimit>30</CutLimit>
-    <CutDmg>5.0</CutDmg>
-    <PierceDmg>2.0</PierceDmg>
-    <BluntDmg>2.0</BluntDmg>
+    <!-- How effective armor is against cut -->
     <CutArmor>1.0</CutArmor>
+    <!-- Damage multipier if cut through armor -->
+    <CutDmg>5.0</CutDmg>
+    <!-- Damage multipier for blunt damage of cut weapon -->
+    <CutBluntDmg>1.0</CutBluntDmg>
+    <!-- How effective armor is against pierce -->
     <PierceArmor>0.5</PierceArmor>
-    <MissileFactor>0.3</MissileFactor>
+    <!-- Damage multipier if pierce through armor -->
+    <PierceDmg>2.0</PierceDmg>
+    <!-- Damage multipier for blunt damage of pierce weapon (higher than 1 because smaller area with same force do more damage) -->
+    <PierceBluntDmg>1.5</PierceBluntDmg>
+    <!-- Damage multipier for blunt damage of blunt weapon (higher than 1 because smaller area with same force do more damage)
+    Probably should be the same as PierceBluntDmg but without twohanded mace it gets a buff. -->
+    <BluntBluntDmg>2.0</BluntBluntDmg>
+    <!-- Damage multipier for missile damage -->
+    <MissileFactor>0.4</MissileFactor>
+
+    <!-- Show damage calulation set to 0 for off -->
+    <ShowCalc>1</ShowCalc>
 </config>
+
+
+<!-- imperial_veteran_infantryman
+id="Item.legionary_mail"
+id="Item.mail_mitten"
+id="Item.leather_cavalier_boots"
+id="Item.heavy_nasalhelm_over_imperial_leather"
+id="Item.imperial_studded_strip_shoulders"
+One handed sword
+type Cut magnitude 20.81798 bluntDmg 14.55803 bleedDmg 0 armorEffectiveness 43
+type Pierce magnitude 16.16008 bluntDmg 16.95113 bleedDmg 0 armorEffectiveness 43
+Two handed sword
+type Cut magnitude 30.25965 bluntDmg 19.27366 bleedDmg 0 armorEffectiveness 57
+type Pierce magnitude 19.47614 bluntDmg 19.09426 bleedDmg 0 armorEffectiveness 53
+One handed Mace
+type Blunt magnitude 18.27683 bluntDmg 23.13523 bleedDmg 0 armorEffectiveness 58
+Spear
+type Pierce magnitude 21.27002 bluntDmg 20.71755 bleedDmg 0 armorEffectiveness 54
+Spear on horse in "running speed"
+type Pierce magnitude 47.66256 bluntDmg 45.82938 bleedDmg 39.32511 armorEffectiveness 56
+Sword on horse in "running speed"
+type Cut magnitude 39.51849 bluntDmg 27.25413 bleedDmg 0 armorEffectiveness 45
+
+imperial_infantryman
+id="Item.arming_coif"
+id="Item.empire_warrior_padded_armor_a"
+id="Item.empire_horseman_boots
+id="Item.buttoned_leather_bracers"
+One handed sword
+type Cut magnitude 17.87041 bluntDmg 16.09947 bleedDmg 34.35207 armorEffectiveness 11
+type Pierce magnitude 17.54043 bluntDmg 23.49165 bleedDmg 23.08086 armorEffectiveness 12
+Two handed sword
+type Cut magnitude 24.93911 bluntDmg 22.46766 bleedDmg 69.69554 armorEffectiveness 11
+One handed Mace
+type Blunt magnitude 22.9885 bluntDmg 41.42072 bleedDmg 0 armorEffectiveness 11 -->
+
